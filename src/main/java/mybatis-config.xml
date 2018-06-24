@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="Userlist.UserlistDataBean" alias="User"/>
+		<typeAlias type="Userlist.EtcinfoDataBean" alias="Etc"/>
+		<typeAlias type="Userlist.TimeDataBean" alias="Time"/>
+		<typeAlias type="songBoard.SongDataBean" alias="Song"/>
+		<typeAlias type="guestMsg.GuestDataBean" alias="Msg"/>
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+			<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+			<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+			<property name="username" value="scott"/>
+			<property name="password" value="tiger"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="User.xml"/>
+		<mapper resource="Etc.xml"/>
+		<mapper resource="Song.xml"/>
+		<mapper resource="Msg.xml"/>
+	</mappers>
+</configuration>

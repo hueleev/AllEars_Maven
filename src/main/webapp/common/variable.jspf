@@ -1,0 +1,64 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ <!DOCTYPE html>
+<html>
+<title>AllEars</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-metro.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+ <script type="text/javascript">
+ 	function logoutPro(){
+ 		alert("로그아웃 되었습니다 -");
+ 		location.href="logoutPro";
+ 	}
+ </script>
+ 
+ <style>
+
+ .w3-bar{
+ box-shadow:0 5px 7px 0 rgba(0,0,0,0.16), 0 10px 8px 0 rgba(0,0,0,0.12);
+ }
+
+ 
+</style>
+<div class="w3-top">
+<div class="w3-bar">
+  <a href="<%if(session.getAttribute("sessionid")!=null) {%>main<%}else { %>intro<%}%>" class="w3-bar-item w3-button w3-metro-yellow w3-large w3-hover-white" title="allears"><i class="fa fa-play w3-margin-right"></i>All Ears</a>
+<!--  <input type="text" class="w3-bar-item w3-large w3-input w3-hover-white" placeholder="Search..">
+  <a class="w3-bar-item w3-button w3-large w3-black w3-hover-cyan"><i class="fa fa-search"></i></a> -->
+	<a href="allusers" class="w3-bar-item w3-button w3-large w3-light-grey w3-hover-white" title="allusers"><i class="fa fa-users w3-margin-right"></i>All Users</a>
+<%if (session.getAttribute("sessionid")==null) {%>  <a href="loginForm" class="w3-bar-item w3-button w3-metro-yellow w3-large w3-right w3-hover-white" title="Login">
+  <i class="fa fa-user-circle w3-margin-right" alt="Login"></i>Login</a><%} else if (session.getAttribute("sessionid").equals("admin")) {%>
+	  <a onclick="logoutPro()" class="w3-bar-item w3-button w3-light-grey w3-hide-small w3-right w3-large w3-hover-white" title="Logout">  
+  <i class="fa fa-home w3-margin-right"></i>Logout</a>
+  <a href="list" class="w3-bar-item w3-button w3-hide-small w3-metro-yellow w3-right w3-large w3-hover-white" title="Userlist">
+  <i class="fa fa-home w3-margin-right"></i>Userlist </a>
+  	<a href="myPage" class="w3-bar-item w3-button w3-hide-small w3-light-grey w3-right w3-large w3-hover-white" title="My Page">  
+  <i class="fa fa-home w3-margin-right"></i>My page</a> 
+  <div class="w3-dropdown-hover w3-right">
+    <button class="w3-button w3-metro-yellow w3-large w3-hover-white"><i class="fa fa-user-circle w3-margin-right"></i>My account</button>
+    <div class="w3-dropdown-content w3-bar-block w3-border">
+      <a href="updateForm1" class="w3-bar-item w3-button w3-large">Main Info</a>
+      <a href="etcInfoForm" class="w3-bar-item w3-button w3-large">Etc Info</a>
+    </div>
+  </div>
+
+<%}else{ %>
+  <a onclick="logoutPro()" class="w3-bar-item w3-button w3-light-grey  w3-hide-small w3-right w3-large w3-hover-white" title="Logout">  
+  <i class="fa fa-home w3-margin-right"></i>Logout</a>
+  	<a href="myPage" class="w3-bar-item w3-button w3-hide-small w3-metro-yellow w3-right w3-large w3-hover-white" title="My Page">  
+  <i class="fa fa-home w3-margin-right"></i>My page</a> 
+  <div class="w3-dropdown-hover w3-right">
+    <button class="w3-button w3-light-grey w3-large w3-hover-white"><i class="fa fa-user-circle w3-margin-right"></i>My account</button>
+    <div class="w3-dropdown-content w3-bar-block w3-border">
+      <a href="updateForm1" class="w3-bar-item w3-button w3-large">Main Info</a>
+      <a href="etcInfoForm" class="w3-bar-item w3-button w3-large">Etc Info</a>
+    </div>
+  </div>
+
+<%} %>
+</div> </div>

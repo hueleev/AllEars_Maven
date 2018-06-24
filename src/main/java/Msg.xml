@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	
+<mapper namespace="ldg.mybatis">
+
+
+	<update id="updateRe_step"	parameterType="Msg">
+		update guestmsg set re_step=re_step+1 where ref= #{ref} and re_step>#{re_step} and gboardid=#{gboardid}
+	</update>
+	
+	<insert id="insertMsg"	parameterType="Msg">
+		insert into guestmsg(gnum,writer,gtitle,gcontent,greg_date,ref,re_step,re_level,gboardid,gemail)
+		 values(#{gnum},#{writer},#{gtitle},#{gcontent},sysdate,#{ref},#{re_step},#{re_level},#{gboardid},#{gemail})
+	</insert>
+	
+	<select id="getMsgCount" resultType="int" parameterType="hashmap">
+			select nvl(count(*),0) from guestmsg
+		<if test="gboardid!=null">
+			WHERE gboardid = #{gboardid}
+		</if>
+	</select>
+	
+	<select id="getMsgs" resultType="Msg" parameterType="hashmap">
+			select * from (select rownum rnum,a.* from 
+			(select gnum,writer,gemail,gtitle,gcontent,greg_date,ref,
+			re_step,re_level from guestmsg where gboardid = #{gboardid}
+			 order by ref desc, re_step) a ) where rnum between #{startRow} and #{endRow}
+	</select>
+		
+	<select id="getMsg" parameterType="hashmap" resultType="Msg">
+			select * from guestmsg where gnum = #{gnum} and gboardid = #{gboardid}
+	</select>
+	
+	<delete id="deleteMsg" parameterType="hashmap">
+			delete from guestmsg where gnum=#{gnum}
+	</delete>
+	
+	<update id="updateMsg" parameterType="Msg">
+			update guestmsg set gtitle=#{gtitle},gemail=#{gemail},gcontent=#{gcontent} where gnum=#{gnum}
+	</update>
+		
+</mapper>
+

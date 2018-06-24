@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	
+<mapper namespace="ldg.mybatis">
+
+	
+		<select id="getEtc" parameterType="hashmap" resultType="Etc">
+			select * from etcinfo where etcid=#{etcid}
+		</select>
+		
+		
+		<select id="getTimeline" parameterType="hashmap" resultType="Time">
+			select e.profilename, f.friendid, u.displayname, u.position, s.* from etcInfo e, follow f, userlist u, songboard s where u.userid=f.friendid and e.etcid=f.friendid and s.sboardid=f.friendid and f.myid=#{myid} order by s.snum desc	
+		</select>
+		
+		
+		<select id="chkid" parameterType="hashmap" resultType="map">
+			select * from etcinfo where etcid=#{etcid}
+		</select>
+		
+		<insert id="insertEtc"	parameterType="Etc">
+			insert into etcinfo(etcid,profilename,profilesize,facelink,instalink,soundlink)
+			 values(#{etcid},#{profilename},#{profilesize},#{facelink},#{instalink},#{soundlink})
+		</insert>
+		
+		<update id="updateEtc"	parameterType="Etc">
+			update etcinfo set etcid=#{etcid},profilename=#{profilename},profilesize=#{profilesize},facelink=#{facelink},instalink=#{instalink},soundlink=#{soundlink} where etcid=#{etcid}
+		</update>
+		
+		<update id="deleteImg"	parameterType="Etc">
+			update etcinfo set profilename=' ' ,profilesize=0 where etcid=#{etcid}
+		</update>
+		
+		
+		
+</mapper>
+

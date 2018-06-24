@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	
+<mapper namespace="ldg.mybatis">
+		
+		<select id="getNextNumber"	resultType="int" >
+			select boardser.nextval from dual
+		</select>
+		
+		
+		<insert id="insertUser"	parameterType="User">
+			insert into userlist(num,userid,passwd,username,displayname,
+			position,gender,hp,address,email,reg_date,bio)
+			 values(#{num},#{userid},#{passwd},#{username},#{displayname},
+			 #{position},#{gender},#{hp},#{address},#{email},sysdate,#{bio})
+		</insert>
+		
+		
+		<select id="confirmId" parameterType="hashmap" resultType="map">
+			select userid from userlist where userid=#{userid}
+		</select>
+		
+		<select id="login" parameterType="hashmap" resultType="map">
+			select passwd FROM userlist WHERE userid=#{userid}
+		</select>
+		
+		<select id="getUser2" parameterType="hashmap" resultType="User">
+			select * from userlist where userid=#{userid} and passwd=#{passwd}
+		</select>
+		
+		
+		<select id="followCount" parameterType="hashmap" resultType="int">
+			select nvl(count(*),0) from follow where myid=#{myid}
+		</select>
+		
+		<select id="followerCount" parameterType="hashmap" resultType="int">
+			select nvl(count(*),0) from follow where friendid=#{friendid}
+		</select>
+		
+		<select id="followList" parameterType="hashmap" resultType="User">
+			select u.* from userlist u, follow f where u.userid=f.friendid and f.myid=#{myid}
+		</select>
+		
+		<select id="followerList" parameterType="hashmap" resultType="User">
+			select u.* from userlist u, follow f where u.userid=f.myid and f.friendid=#{friendid}
+		</select>
+		
+		<select id="getUserCount" resultType="int">
+			select nvl(count(*),0) from userlist
+		</select>
+		
+		<select id="getUsers" parameterType="hashmap" resultType="User">
+			select * from ( select rownum rnum,a.* from (select num,userid,passwd,username,displayname,
+					position,gender,hp,address,email,reg_date,bio from userlist order by reg_date desc) a ) where rnum between #{startRow} and #{endRow}
+		</select>
+		
+		<select id="getUser" parameterType="hashmap" resultType="User">
+			select * from userlist where num=#{num}
+		</select>
+		
+		<delete id="deleteUser" parameterType="hashmap">
+			delete from userlist where userid=#{userid} and passwd=#{passwd}
+		</delete>
+		
+		<delete id="deleteFollow" parameterType="hashmap">
+			delete from follow where friendid=#{userid} or myid=#{userid}
+		</delete>
+		
+		<delete id="deleteUser2" parameterType="hashmap">
+			delete from userlist where userid=#{userid}
+		</delete>
+		
+		<update id="updateUser"	parameterType="User">
+			update userlist set passwd=#{passwd},displayname=#{displayname},position=#{position},hp=#{hp},address=#{address},email=#{email},bio=#{bio} where num=#{num}
+		</update>
+		
+		<select id="followchk" parameterType="hashmap" resultType="map">
+			select * from follow where myid=#{myid} and friendid=#{friendid}
+		</select>
+		
+		<delete id="unfollow" parameterType="hashmap">
+			delete from follow where myid=#{myid} and friendid=#{friendid}
+		</delete>
+		
+		<insert id="follow" parameterType="hashmap">
+			insert into follow(myid,friendid) values(#{myid},#{friendid})
+		</insert>
+
+
+</mapper>
+

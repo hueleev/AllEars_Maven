@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ <!DOCTYPE html>
+<html>
+<title>AllEars</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-metro.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<style>
+.footer {
+	position:fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    opacity:80%;
+}
+</style>
+
+<div class="footer w3-light-grey"  style="text-align:center; color:black;">
+  <h5>company : AllEars &nbsp;&nbsp;&nbsp; owner : hyungwon &nbsp;&nbsp;&nbsp; tel : 010-2736-3863</h5>
+</div>
+
