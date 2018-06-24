@@ -62,9 +62,10 @@
 ## DB
 ### 타임라인 
 ~~~java
-		<select id="getTimeline" parameterType="hashmap" resultType="Time">
-			select e.profilename, f.friendid, u.displayname, u.position, s.* from etcInfo e, follow f, userlist u, songboard s where u.userid=f.friendid and e.etcid=f.friendid and s.sboardid=f.friendid and f.myid=#{myid} order by s.snum desc	
-		</select>
+<select id="getTimeline" parameterType="hashmap" resultType="Time">
+	select e.profilename, f.friendid, u.displayname, u.position, s.* from etcInfo e, follow f, userlist u, songboard s 
+	where u.userid=f.friendid and e.etcid=f.friendid and s.sboardid=f.friendid and f.myid=#{myid} order by s.snum desc
+</select>
 ~~~
 
 ## web.xml
