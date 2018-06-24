@@ -1,2 +1,2 @@
 # All Ears _ Music SNS
-![Github](./img/11111.png)
+![Github](./public/img/11111.png)
