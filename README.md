@@ -23,7 +23,7 @@
   - DB : Oracle 11g / mybaits
   - Maven Project
   - [전체 소스](https://github.com/hueleev/AllEars_Maven)
-
+  - [포트폴리오](https://github.com/hueleev/AllEars_Maven/files/2130455/AllEars.pdf)
   - 로컬에서 동작하는 프로그램이므로 Oracle 설치, scott.sql 참고하여 테이블 생성 후 실행하여야 함.
   
 ## 구현 화면
