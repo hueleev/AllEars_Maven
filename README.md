@@ -22,8 +22,10 @@
   - Framework : Spring MVC
   - DB : Oracle 11g / mybaits
   - Maven Project
-  - [자세한 코드](https://github.com/hueleev/AllEars_Maven)
+  - [전체 소스](https://github.com/hueleev/AllEars_Maven)
 
+  - 로컬에서 동작하는 프로그램이므로 Oracle 설치, scott.sql 참고하여 테이블 생성 후 실행하여야 함.
+  
 ## 구현 화면
 ### 로그인 전 화면 / 로그인 / 회원가입
 ![main](https://user-images.githubusercontent.com/33610328/41815724-3ecd4a3a-77ae-11e8-802d-a7a6ec246c79.png)
