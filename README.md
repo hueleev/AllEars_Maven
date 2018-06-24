@@ -59,4 +59,97 @@
 ### 회원 탈퇴
 ![delete](https://user-images.githubusercontent.com/33610328/41815747-93d6ef7c-77ae-11e8-9418-4df7e826000f.png)
 
+## DB
+### 타임라인 
+~~~java
+		<select id="getTimeline" parameterType="hashmap" resultType="Time">
+			select e.profilename, f.friendid, u.displayname, u.position, s.* from etcInfo e, follow f, userlist u, songboard s where u.userid=f.friendid and e.etcid=f.friendid and s.sboardid=f.friendid and f.myid=#{myid} order by s.snum desc	
+		</select>
+~~~
+
+## web.xml
+~~~java
+<?xml version="1.0" encoding="EUC-KR"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>AllEars</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+ 
+  
+  <servlet>
+    <servlet-name>AllEars</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  
+  <servlet-mapping>
+    <servlet-name>AllEars</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.jpg</url-pattern>
+     <url-pattern>*.css</url-pattern>
+     <url-pattern>*.png</url-pattern>
+     <url-pattern>*.mp4</url-pattern>
+     <url-pattern>*.wav</url-pattern>
+     <url-pattern>*.mp3</url-pattern>
+  </servlet-mapping>
+  
+  
+  <filter> 
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+ 
+ </web-app>
+ ~~~
+ 
+ ## AllEars-servlet.xml
+ ~~~java
+ <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+		
+	<mvc:annotation-driven/>
+	<mvc:view-controller path="/index" view-name="index"/>
+	<mvc:default-servlet-handler/>
+	
+	<bean class="controller.BoardController"/>
+	<bean id="multipartResolver" 
+         class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+   	</bean> 
+	
+	<bean id="viewResolver" 
+			class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="prefix" value="/WEB-INF/view/"/>
+			<property name="suffix" value=".jsp"/>
+	</bean> 
+</beans>
+~~~
+
+
 
