@@ -94,7 +94,7 @@ public class BoardController{
 		return "redirect:intro";
 	}
 	
-	
+	 
 	//아이디 중복확인
 	@RequestMapping("/confirmId")
 	public String confirmId(String userid,Model mv) {
