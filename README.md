@@ -148,9 +148,9 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 			class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 			<property name="prefix" value="/WEB-INF/view/"/>
 			<property name="suffix" value=".jsp"/>
-	</bean> 
 </beans>
 ~~~
 
+## [자세한 코드](https://github.com/hueleev/AllEars_Maven)
 
 
