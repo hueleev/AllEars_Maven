@@ -22,7 +22,8 @@
   - Framework : Spring MVC
   - DB : Oracle 11g / mybaits
   - Maven Project
-  
+  - [자세한 코드](https://github.com/hueleev/AllEars_Maven)
+
 ## 구현 화면
 ### 로그인 전 화면 / 로그인 / 회원가입
 ![main](https://user-images.githubusercontent.com/33610328/41815724-3ecd4a3a-77ae-11e8-802d-a7a6ec246c79.png)
@@ -151,6 +152,5 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 </beans>
 ~~~
 
-## [자세한 코드](https://github.com/hueleev/AllEars_Maven)
 
 
